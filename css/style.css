@@ -32,3 +32,15 @@
   .hero-board{min-height:155px}
 }
 @media(max-width:380px){.hero-board{min-height:125px}}
+
+/* Upcoming games */
+.future-card{min-height:0;display:flex;flex-direction:column;place-items:initial;align-content:initial;gap:0;overflow:hidden;border:1px solid var(--line);background:#fff;color:var(--navy);box-shadow:0 13px 40px rgba(10,48,100,.08)}
+.future-artwork{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:center}
+.future-body{display:flex;flex:1;flex-direction:column;padding:1.4rem}
+.future-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;margin-bottom:.85rem}
+.future-heading h3{margin:0}
+.future-card .future-badge{flex:0 0 auto;width:auto;height:auto;padding:.35rem .65rem;border-radius:999px;background:#eaf3ff;color:#0757d6;box-shadow:none;font-size:.69rem;font-weight:900;line-height:1.2;letter-spacing:.03em;text-transform:none}
+.future-card .future-badge-soon{background:#fff2b8;color:#6b5100}
+.future-body>p{margin:0;color:var(--muted);font-size:.94rem;line-height:1.55}
+.future-body .future-meta{margin-top:auto;padding-top:1rem;color:#526580;font-size:.79rem;font-weight:750}
+@media(max-width:680px){.future-body{padding:1.2rem}.future-heading{align-items:center}.future-card .future-badge{font-size:.66rem}}
