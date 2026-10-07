@@ -2,6 +2,16 @@ const games = {
   kedaiMatematik: {
     title: "Kedai Matematik",
     description: "Belajar Matematik melalui simulasi kedai, wang, masa dan ukuran.",
+    summary: "Belajar Matematik melalui simulasi kedai dan misi interaktif.",
+    details: [
+      ["Fokus", "Matematik"],
+      ["Topik", "Wang, Masa, Ukuran dan Pecahan"],
+      ["Gaya", "Simulasi kedai & misi"],
+      ["Peranti", "PC, Tablet & Mobile"],
+      ["Kos", "Percuma"],
+      ["Akaun", "Tidak diperlukan"]
+    ],
+    ctaLabel: "Main Kedai Matematik",
     url: "https://kedai-matematik.pages.dev/",
     artworkUrl: "assets/games/kedai-matematik-card.webp",
     logoUrl: "",
@@ -15,6 +25,16 @@ const games = {
   makmalCilik: {
     title: "Makmal Cilik",
     description: "Teroka Sains melalui eksperimen dan misi bersama PICO.",
+    summary: "Teroka konsep Sains melalui eksperimen dan misi bersama PICO.",
+    details: [
+      ["Fokus", "Sains"],
+      ["Gaya", "Eksperimen & misi"],
+      ["Pembantu", "PICO"],
+      ["Peranti", "PC, Tablet & Mobile"],
+      ["Kos", "Percuma"],
+      ["Akaun", "Tidak diperlukan"]
+    ],
+    ctaLabel: "Main Makmal Cilik",
     url: "https://makmal-cilik.pages.dev/",
     artworkUrl: "assets/games/makmal-cilik-card.webp",
     logoUrl: "",
@@ -28,6 +48,16 @@ const games = {
   detektifBahasa: {
     title: "Detektif Bahasa",
     description: "Selesaikan kes dan misteri Bahasa Melayu di Bayuraya.",
+    summary: "Selesaikan misteri Bahasa Melayu melalui penyiasatan di Bayuraya.",
+    details: [
+      ["Fokus", "Bahasa Melayu"],
+      ["Gaya", "Misteri & penyiasatan"],
+      ["Dunia", "Bayuraya"],
+      ["Peranti", "PC, Tablet & Mobile"],
+      ["Kos", "Percuma"],
+      ["Akaun", "Tidak diperlukan"]
+    ],
+    ctaLabel: "Main Detektif Bahasa",
     url: "https://detektif-bahasa.pages.dev/",
     artworkUrl: "assets/games/detektif-bahasa-card.webp",
     logoUrl: "",
@@ -69,9 +99,8 @@ if (gameGrid) {
           <p>${game.description}</p>
           <div class="game-actions">
             <a class="button button-game" ${playAttributes}>Main Sekarang</a>
-            <button class="button button-info" type="button" aria-expanded="false" aria-controls="info-${id}" data-info-toggle>Info</button>
+            <button class="button button-info" type="button" aria-haspopup="dialog" aria-expanded="false" data-game-id="${id}" data-info-toggle>Info</button>
           </div>
-          <p id="info-${id}" class="game-info" hidden>${game.note}. Sesuai digunakan sebagai aktiviti pembelajaran kendiri atau bersama orang dewasa.</p>
         </div>
       </article>`;
   }).join("");
@@ -88,18 +117,62 @@ if (gameGrid) {
   }, true);
 }
 
+const gameModal = document.querySelector("[data-game-modal]");
+const modalPanel = gameModal?.querySelector("[data-modal-panel]");
+const modalClose = gameModal?.querySelector("[data-modal-close]");
+const modalArtwork = gameModal?.querySelector("[data-modal-artwork]");
+const modalTitle = gameModal?.querySelector("[data-modal-title]");
+const modalSummary = gameModal?.querySelector("[data-modal-summary]");
+const modalDetails = gameModal?.querySelector("[data-modal-details]");
+const modalCta = gameModal?.querySelector("[data-modal-cta]");
+let activeInfoTrigger = null;
+
+const getModalFocusables = () => [...modalPanel.querySelectorAll(
+  'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+)].filter((element) => !element.hidden);
+
+const openGameModal = (gameId, trigger) => {
+  const game = games[gameId];
+  if (!game || !gameModal) return;
+
+  activeInfoTrigger = trigger;
+  modalArtwork.src = game.artworkUrl;
+  modalArtwork.alt = game.artworkAlt;
+  modalTitle.textContent = game.title;
+  modalSummary.textContent = game.summary;
+  modalDetails.innerHTML = game.details.map(([term, value]) => (
+    `<div><dt>${term}</dt><dd>${value}</dd></div>`
+  )).join("");
+  modalCta.textContent = game.ctaLabel;
+  modalCta.href = game.url;
+  modalCta.hidden = !game.url;
+
+  trigger.setAttribute("aria-expanded", "true");
+  gameModal.hidden = false;
+  document.body.classList.add("modal-open");
+  modalClose.focus();
+};
+
+const closeGameModal = () => {
+  if (!gameModal || gameModal.hidden) return;
+
+  gameModal.hidden = true;
+  document.body.classList.remove("modal-open");
+  activeInfoTrigger?.setAttribute("aria-expanded", "false");
+  activeInfoTrigger?.focus();
+  activeInfoTrigger = null;
+};
+
 document.addEventListener("click", (event) => {
   const unavailableLink = event.target.closest("[data-unavailable]");
   if (unavailableLink) event.preventDefault();
 
   const infoToggle = event.target.closest("[data-info-toggle]");
   if (infoToggle) {
-    const info = document.getElementById(infoToggle.getAttribute("aria-controls"));
-    const isOpen = infoToggle.getAttribute("aria-expanded") === "true";
-    infoToggle.setAttribute("aria-expanded", String(!isOpen));
-    info.hidden = isOpen;
-    infoToggle.textContent = isOpen ? "Info" : "Tutup Info";
+    openGameModal(infoToggle.dataset.gameId, infoToggle);
   }
+
+  if (event.target.closest("[data-modal-close], [data-modal-dismiss]")) closeGameModal();
 });
 
 const menuToggle = document.querySelector("[data-menu-toggle]");
@@ -121,6 +194,26 @@ nav?.addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && gameModal && !gameModal.hidden) {
+    event.preventDefault();
+    closeGameModal();
+    return;
+  }
+
+  if (event.key === "Tab" && gameModal && !gameModal.hidden) {
+    const focusables = getModalFocusables();
+    const first = focusables[0];
+    const last = focusables.at(-1);
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
   if (event.key === "Escape" && nav?.classList.contains("is-open")) {
     closeMenu();
     menuToggle?.focus();

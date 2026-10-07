@@ -1,5 +1,7 @@
 # ZilTeroka
 
+**Versi semasa: v0.2.0**
+
 Portal rasmi ringan untuk permainan pendidikan ZilTeroka. Projek ini dibina dengan HTML5, CSS3 dan JavaScript vanilla, tanpa framework, tracking, akaun, pangkalan data atau storan pelayar.
 
 ## Struktur
@@ -38,6 +40,14 @@ const games = {
 Versi semasa menggunakan aset rasmi tempatan untuk Kedai Matematik, Makmal Cilik dan Detektif Bahasa. Salinan produksi yang dioptimumkan disimpan dalam `assets/games/`; fail sumber asal kekal di projek game masing-masing.
 
 Setiap kad menggunakan satu promotional key art WebP 1600 × 900 dengan logo rasmi sudah digabungkan ke dalam komposisi. `logoEmbedded: true` menghalang layer logo kedua daripada dipaparkan.
+
+## Changelog
+
+### v0.2.0
+
+- Pautan pelancaran game aktif kini berfungsi melalui satu konfigurasi pusat.
+- Panel maklumat interaktif disediakan untuk setiap game aktif.
+- Penambahbaikan aksesibiliti meliputi dialog semantik, kawalan papan kekunci, pengurusan fokus dan penguncian scroll latar.
 
 Alamat e-mel footer masih menggunakan placeholder `hello@example.com` dan perlu diganti sebelum penerbitan.
 
