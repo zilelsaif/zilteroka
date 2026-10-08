@@ -90,15 +90,15 @@
         <div class="parents-copy">
           <p class="eyebrow">Rakan pembelajaran</p>
           <h2 id="parents-title">Untuk Ibu Bapa &amp; Guru</h2>
-          <p>Ketahui fokus pembelajaran, umur sasaran dan cara menggunakan setiap game sebagai aktiviti pembelajaran.</p>
-          <a class="button button-dark" href="#panduan">Ketahui Lebih Lanjut</a>
+          <p>Pilih game mengikut fokus pembelajaran dan gunakan sebagai aktiviti tambahan di rumah atau dalam kelas.</p>
+          <button class="button button-dark" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="game-modal-dialog" data-guide-open>Panduan Ibu Bapa &amp; Guru</button>
         </div>
         <div class="learning-list" id="panduan">
           <article><span aria-hidden="true">◎</span><div><h3>Objektif Pembelajaran</h3><p>Kemahiran utama diterangkan dengan jelas.</p></div></article>
-          <article><span aria-hidden="true">7+</span><div><h3>Umur Sasaran</h3><p>Pilih pengalaman yang sesuai untuk anak.</p></div></article>
+          <article><span aria-hidden="true">★</span><div><h3>Kemahiran Utama</h3><p>Pilih game mengikut kemahiran yang ingin dilatih.</p></div></article>
           <article><span aria-hidden="true">☰</span><div><h3>Panduan Penggunaan</h3><p>Cadangan mudah untuk aktiviti di rumah atau kelas.</p></div></article>
           <article><span aria-hidden="true">▣</span><div><h3>Telefon, Tablet &amp; Desktop</h3><p>Main pada peranti yang paling mudah dicapai.</p></div></article>
-          <article><span aria-hidden="true">★</span><div><h3>Belajar Melalui Gameplay</h3><p>Latihan terasa seperti misi, bukan lembaran kerja.</p></div></article>
+          <article><span aria-hidden="true">20</span><div><h3>Sesi Pendek</h3><p>Cadangan aktiviti antara 10 hingga 25 minit.</p></div></article>
         </div>
       </div>
     </section>
@@ -152,17 +152,72 @@
 
   <div class="game-modal" data-game-modal hidden>
     <div class="game-modal-backdrop" data-modal-dismiss aria-hidden="true"></div>
-    <section class="game-modal-panel" role="dialog" aria-modal="true" aria-labelledby="game-modal-title" aria-describedby="game-modal-summary" tabindex="-1" data-modal-panel>
-      <button class="game-modal-close" type="button" aria-label="Tutup maklumat game" data-modal-close>×</button>
-      <div class="game-modal-media">
+    <section class="game-modal-panel" id="game-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="game-modal-title" aria-describedby="game-modal-summary" tabindex="-1" data-modal-panel>
+      <button class="game-modal-close" type="button" aria-label="Tutup dialog" data-modal-close>×</button>
+      <div class="game-modal-media" data-modal-media>
         <img src="" alt="" width="1600" height="900" decoding="async" data-modal-artwork>
       </div>
       <div class="game-modal-content">
-        <p class="eyebrow">Maklumat game</p>
+        <p class="eyebrow" data-modal-eyebrow>Maklumat game</p>
         <h2 id="game-modal-title" data-modal-title></h2>
         <p class="game-modal-summary" id="game-modal-summary" data-modal-summary></p>
         <dl class="game-modal-details" data-modal-details></dl>
         <a class="button button-primary game-modal-cta" href="#" data-modal-cta></a>
+        <div class="parent-guide" data-parent-guide hidden>
+          <div class="guide-accordions">
+            <details class="guide-game" open>
+              <summary>Kedai Matematik</summary>
+              <div class="guide-game-body">
+                <p>Pembelajaran Matematik melalui simulasi kedai dan misi interaktif.</p>
+                <div class="guide-columns">
+                  <section><h3>Fokus pembelajaran</h3><ul><li>Wang</li><li>Masa</li><li>Ukuran</li><li>Pecahan</li></ul></section>
+                  <section><h3>Kemahiran</h3><ul><li>Pengiraan</li><li>Penyelesaian masalah</li><li>Membuat pilihan</li><li>Penggunaan Matematik dalam situasi harian</li></ul></section>
+                </div>
+                <section class="guide-use"><h3>Cara guna</h3><p>Galakkan pemain menyelesaikan misi sendiri terlebih dahulu. Jika tersangkut, bincangkan bagaimana Matematik digunakan dalam situasi kedai sebenar.</p></section>
+                <dl class="guide-facts"><div><dt>Cadangan sesi</dt><dd>10–20 minit</dd></div><div><dt>Peranti</dt><dd>PC, tablet dan telefon</dd></div></dl>
+                <a class="button button-small guide-game-link" href="#" data-guide-game-link="kedaiMatematik">Main Kedai Matematik</a>
+              </div>
+            </details>
+            <details class="guide-game">
+              <summary>Makmal Cilik</summary>
+              <div class="guide-game-body">
+                <p>Teroka konsep Sains melalui eksperimen, pemerhatian dan misi bersama PICO.</p>
+                <div class="guide-columns">
+                  <section><h3>Fokus pembelajaran</h3><ul><li>Konsep asas Sains</li><li>Pemerhatian</li><li>Eksperimen</li><li>Hubungan sebab dan akibat</li></ul></section>
+                  <section><h3>Kemahiran</h3><ul><li>Membuat pemerhatian</li><li>Mengenal pasti corak</li><li>Membuat pilihan berdasarkan bukti</li><li>Penyelesaian masalah</li></ul></section>
+                </div>
+                <section class="guide-use"><h3>Cara guna</h3><p>Selepas sesuatu misi selesai, minta pemain terangkan apa yang berlaku dan mengapa. Gunakan soalan mudah untuk menghubungkan eksperimen dalam game dengan dunia sebenar.</p></section>
+                <dl class="guide-facts"><div><dt>Cadangan sesi</dt><dd>10–20 minit</dd></div><div><dt>Peranti</dt><dd>PC, tablet dan telefon</dd></div></dl>
+                <a class="button button-small guide-game-link" href="#" data-guide-game-link="makmalCilik">Main Makmal Cilik</a>
+              </div>
+            </details>
+            <details class="guide-game">
+              <summary>Detektif Bahasa</summary>
+              <div class="guide-game-body">
+                <p>Pembelajaran Bahasa Melayu melalui penyiasatan, petunjuk dan misteri di Bayuraya.</p>
+                <div class="guide-columns">
+                  <section><h3>Fokus pembelajaran</h3><ul><li>Kefahaman Bahasa Melayu</li><li>Kosa kata</li><li>Membaca petunjuk</li><li>Memahami maklumat</li></ul></section>
+                  <section><h3>Kemahiran</h3><ul><li>Membaca dengan teliti</li><li>Membuat inferens</li><li>Membandingkan maklumat</li><li>Penaakulan bahasa</li></ul></section>
+                </div>
+                <section class="guide-use"><h3>Cara guna</h3><p>Galakkan pemain membaca setiap petunjuk sebelum memilih jawapan. Selepas kes selesai, bincangkan petunjuk yang paling membantu dan bagaimana kesimpulan dibuat.</p></section>
+                <dl class="guide-facts"><div><dt>Cadangan sesi</dt><dd>15–25 minit</dd></div><div><dt>Peranti</dt><dd>PC, tablet dan telefon</dd></div></dl>
+                <a class="button button-small guide-game-link" href="#" data-guide-game-link="detektifBahasa">Main Detektif Bahasa</a>
+              </div>
+            </details>
+          </div>
+          <section class="guide-shared" aria-labelledby="guide-shared-title">
+            <h3 id="guide-shared-title">Cara menggunakan ZilTeroka</h3>
+            <div class="guide-tips">
+              <article><h4>Main sendiri dahulu</h4><p>Beri ruang kepada pemain mencuba dan membuat keputusan sendiri.</p></article>
+              <article><h4>Bincang selepas bermain</h4><p>Tanya apa yang dipelajari, apa yang sukar dan bagaimana mereka menyelesaikan masalah.</p></article>
+              <article><h4>Sesi pendek dan konsisten</h4><p>Aktiviti 10–25 minit lebih sesuai daripada memaksa sesi yang terlalu panjang.</p></article>
+            </div>
+          </section>
+          <aside class="guide-trust" aria-label="Akses dan privasi">
+            <div><strong>Percuma Sepenuhnya</strong><strong>Tiada Pendaftaran</strong><strong>Tiada Data Peribadi Dikumpulkan oleh Kami</strong></div>
+            <p>Game ZilTeroka boleh dimainkan tanpa mencipta akaun atau memberikan maklumat peribadi kepada kami.</p>
+          </aside>
+        </div>
       </div>
     </section>
   </div>

@@ -99,7 +99,7 @@ if (gameGrid) {
           <p>${game.description}</p>
           <div class="game-actions">
             <a class="button button-game" ${playAttributes}>Main Sekarang</a>
-            <button class="button button-info" type="button" aria-haspopup="dialog" aria-expanded="false" data-game-id="${id}" data-info-toggle>Info</button>
+            <button class="button button-info" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="game-modal-dialog" data-game-id="${id}" data-info-toggle>Info</button>
           </div>
         </div>
       </article>`;
@@ -120,22 +120,34 @@ if (gameGrid) {
 const gameModal = document.querySelector("[data-game-modal]");
 const modalPanel = gameModal?.querySelector("[data-modal-panel]");
 const modalClose = gameModal?.querySelector("[data-modal-close]");
+const modalMedia = gameModal?.querySelector("[data-modal-media]");
 const modalArtwork = gameModal?.querySelector("[data-modal-artwork]");
+const modalEyebrow = gameModal?.querySelector("[data-modal-eyebrow]");
 const modalTitle = gameModal?.querySelector("[data-modal-title]");
 const modalSummary = gameModal?.querySelector("[data-modal-summary]");
 const modalDetails = gameModal?.querySelector("[data-modal-details]");
 const modalCta = gameModal?.querySelector("[data-modal-cta]");
+const parentGuide = gameModal?.querySelector("[data-parent-guide]");
 let activeInfoTrigger = null;
 
 const getModalFocusables = () => [...modalPanel.querySelectorAll(
-  'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-)].filter((element) => !element.hidden);
+  'a[href], button:not([disabled]), summary, [tabindex]:not([tabindex="-1"])'
+)].filter((element) => {
+  const closedDetails = element.closest("details:not([open])");
+  const isClosedDetailsSummary = closedDetails?.querySelector(":scope > summary") === element;
+  return !element.hidden
+    && element.getClientRects().length > 0
+    && (!closedDetails || isClosedDetailsSummary);
+});
 
 const openGameModal = (gameId, trigger) => {
   const game = games[gameId];
   if (!game || !gameModal) return;
 
   activeInfoTrigger = trigger;
+  modalPanel.classList.remove("is-guide");
+  modalMedia.hidden = false;
+  modalEyebrow.textContent = "Maklumat game";
   modalArtwork.src = game.artworkUrl;
   modalArtwork.alt = game.artworkAlt;
   modalTitle.textContent = game.title;
@@ -146,12 +158,41 @@ const openGameModal = (gameId, trigger) => {
   modalCta.textContent = game.ctaLabel;
   modalCta.href = game.url;
   modalCta.hidden = !game.url;
+  modalDetails.hidden = false;
+  parentGuide.hidden = true;
 
   trigger.setAttribute("aria-expanded", "true");
   gameModal.hidden = false;
   document.body.classList.add("modal-open");
   modalClose.focus();
 };
+
+const openParentGuide = (trigger) => {
+  if (!gameModal) return;
+
+  activeInfoTrigger = trigger;
+  modalPanel.classList.add("is-guide");
+  modalMedia.hidden = true;
+  modalEyebrow.textContent = "Panduan ringkas";
+  modalTitle.textContent = "Panduan Ibu Bapa & Guru";
+  modalSummary.textContent = "ZilTeroka direka sebagai aktiviti pembelajaran tambahan yang boleh dimainkan secara kendiri atau bersama orang dewasa.";
+  modalDetails.hidden = true;
+  modalCta.hidden = true;
+  parentGuide.hidden = false;
+  parentGuide.querySelectorAll("details").forEach((details, index) => {
+    details.open = index === 0;
+  });
+
+  trigger.setAttribute("aria-expanded", "true");
+  gameModal.hidden = false;
+  document.body.classList.add("modal-open");
+  modalClose.focus();
+};
+
+document.querySelectorAll("[data-guide-game-link]").forEach((link) => {
+  const game = games[link.dataset.guideGameLink];
+  if (game?.url) link.href = game.url;
+});
 
 const closeGameModal = () => {
   if (!gameModal || gameModal.hidden) return;
@@ -171,6 +212,9 @@ document.addEventListener("click", (event) => {
   if (infoToggle) {
     openGameModal(infoToggle.dataset.gameId, infoToggle);
   }
+
+  const guideOpen = event.target.closest("[data-guide-open]");
+  if (guideOpen) openParentGuide(guideOpen);
 
   if (event.target.closest("[data-modal-close], [data-modal-dismiss]")) closeGameModal();
 });

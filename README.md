@@ -1,6 +1,6 @@
 # ZilTeroka
 
-**Versi semasa: v0.2.0**
+**Versi semasa: v0.3.0**
 
 Portal rasmi ringan untuk permainan pendidikan ZilTeroka. Projek ini dibina dengan HTML5, CSS3 dan JavaScript vanilla, tanpa framework, tracking, akaun, pangkalan data atau storan pelayar.
 
@@ -42,6 +42,14 @@ Versi semasa menggunakan aset rasmi tempatan untuk Kedai Matematik, Makmal Cilik
 Setiap kad menggunakan satu promotional key art WebP 1600 × 900 dengan logo rasmi sudah digabungkan ke dalam komposisi. `logoEmbedded: true` menghalang layer logo kedua daripada dipaparkan.
 
 ## Changelog
+
+### v0.3.0 — Parent & Teacher Guidance
+
+- Tambah panduan Ibu Bapa & Guru.
+- Objektif dan kemahiran diterangkan untuk setiap game.
+- Cadangan penggunaan dan tempoh sesi disediakan.
+- Panduan akses, trust dan privasi dikekalkan selaras dengan laman.
+- Modal panduan responsif dan accessible menggunakan accordion native.
 
 ### v0.2.0
 
