@@ -32,6 +32,40 @@
   .hero-board{min-height:155px}
 }
 
+/* v0.4.0 contact section */
+.contact-section{background:linear-gradient(180deg,#fff 0%,#f2f8ff 100%)}
+.contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem}
+.contact-card{display:flex;flex-direction:column;padding:1.6rem;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:0 12px 36px rgba(10,48,100,.07)}
+.contact-identity{display:flex;align-items:center;gap:1.2rem;padding-bottom:1.25rem;border-bottom:1px solid var(--line)}
+.contact-avatar{width:108px;height:108px;flex:0 0 108px;border:4px solid #e7f1ff;border-radius:24px;object-fit:cover;box-shadow:0 8px 24px rgba(7,87,214,.12)}
+.contact-identity h3{font-size:1.55rem;margin-bottom:.35rem}
+.contact-identity p{margin:0;color:var(--muted);font-weight:750}
+.contact-details{display:grid;gap:.75rem;margin:1.25rem 0}
+.contact-details div{display:grid;grid-template-columns:145px 1fr;gap:1rem;align-items:start}
+.contact-details dt{color:var(--muted);font-size:.78rem;font-weight:850;text-transform:uppercase;letter-spacing:.07em}
+.contact-details dd{margin:0;color:var(--navy);font-weight:800;overflow-wrap:anywhere}
+.contact-details a:hover{text-decoration:underline;text-underline-offset:3px}
+.contact-whatsapp{margin:0 0 1.25rem;padding:.75rem .9rem;border-radius:12px;background:var(--bg);color:var(--muted);font-size:.9rem}
+.contact-whatsapp strong{color:var(--navy)}
+.contact-whatsapp span{font-size:.82rem}
+.contact-actions{display:flex;gap:.75rem;margin-top:auto}
+.contact-actions .button{flex:1;min-height:48px;text-align:center}
+.contact-privacy{max-width:920px;margin:1.4rem auto 0;padding:1.15rem 1.3rem;border:1px solid #cfe0f4;border-radius:18px;background:#edf6ff}
+.contact-privacy h3{font-size:1rem;margin-bottom:.55rem;color:var(--navy)}
+.contact-privacy p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.55}
+.contact-privacy p+p{margin-top:.45rem}
+@media(max-width:680px){
+  .contact-grid{grid-template-columns:1fr}
+  .contact-card{padding:1.15rem}
+  .contact-identity{gap:1rem}
+  .contact-avatar{width:84px;height:84px;flex-basis:84px;border-radius:20px}
+  .contact-identity h3{font-size:1.3rem}
+  .contact-details div{grid-template-columns:1fr;gap:.15rem}
+  .contact-actions{flex-direction:column}
+  .contact-actions .button{width:100%;flex:auto}
+  .contact-privacy{padding:1rem}
+}
+
 /* v0.3.0 parent and teacher guide, reusing the global dialog. */
 .game-modal-panel.is-guide{display:block;width:min(960px,100%)}
 .game-modal-details[hidden],.game-modal-cta[hidden],.game-modal-media[hidden],.parent-guide[hidden]{display:none!important}
