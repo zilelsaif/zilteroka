@@ -1,6 +1,6 @@
 # ZilTeroka
 
-**Versi semasa: v0.4.1**
+**Versi semasa: v0.4.2**
 
 Portal rasmi ringan untuk permainan pendidikan ZilTeroka. Projek ini dibina dengan HTML5, CSS3 dan JavaScript vanilla, tanpa framework, tracking, akaun, pangkalan data atau storan pelayar.
 
@@ -42,6 +42,12 @@ Versi semasa menggunakan aset rasmi tempatan untuk Kedai Matematik, Makmal Cilik
 Setiap kad menggunakan satu promotional key art WebP 1600 × 900 dengan logo rasmi sudah digabungkan ke dalam komposisi. `logoEmbedded: true` menghalang layer logo kedua daripada dipaparkan.
 
 ## Changelog
+
+### v0.4.2 — Google Play Availability
+
+- Added Google Play availability for Kedai Matematik.
+- Added web / Play Store launch choices.
+- Retained centralized game-link configuration.
 
 ### v0.4.1 — Brand Icon & Favicon Polish
 

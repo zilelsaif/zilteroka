@@ -13,6 +13,7 @@ const games = {
     ],
     ctaLabel: "Main Kedai Matematik",
     url: "https://kedai-matematik.pages.dev/",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.zilelsaif.kedaimatematik",
     artworkUrl: "assets/games/kedai-matematik-card.webp",
     logoUrl: "",
     logoEmbedded: true,
@@ -86,6 +87,11 @@ if (gameGrid) {
       : game.logoUrl
         ? `<img class="game-logo" src="${game.logoUrl}" alt="" loading="lazy" decoding="async" data-logo-image><span class="game-label game-logo-fallback" hidden>${game.label}</span>`
         : `<span class="game-label">${game.label}</span>`;
+    const playStoreAction = game.playStoreUrl
+      ? `<a class="button button-store" href="${game.playStoreUrl}" target="_blank" rel="noopener noreferrer" aria-label="Dapatkan ${game.title} di Google Play">Google Play</a>`
+      : "";
+    const webCtaLabel = game.playStoreUrl ? "Main di Web" : "Main Sekarang";
+    const actionsClass = game.playStoreUrl ? "game-actions has-play-store" : "game-actions";
 
     return `
       <article class="game-card ${game.className}" id="${id}">
@@ -97,8 +103,9 @@ if (gameGrid) {
         <div class="game-body">
           <h3>${game.title}</h3>
           <p>${game.description}</p>
-          <div class="game-actions">
-            <a class="button button-game" ${playAttributes}>Main Sekarang</a>
+          <div class="${actionsClass}">
+            <a class="button button-game" ${playAttributes}>${webCtaLabel}</a>
+            ${playStoreAction}
             <button class="button button-info" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="game-modal-dialog" data-game-id="${id}" data-info-toggle>Info</button>
           </div>
         </div>
@@ -127,6 +134,7 @@ const modalTitle = gameModal?.querySelector("[data-modal-title]");
 const modalSummary = gameModal?.querySelector("[data-modal-summary]");
 const modalDetails = gameModal?.querySelector("[data-modal-details]");
 const modalCta = gameModal?.querySelector("[data-modal-cta]");
+const modalPlayStoreCta = gameModal?.querySelector("[data-modal-play-store-cta]");
 const parentGuide = gameModal?.querySelector("[data-parent-guide]");
 let activeInfoTrigger = null;
 
@@ -155,9 +163,12 @@ const openGameModal = (gameId, trigger) => {
   modalDetails.innerHTML = game.details.map(([term, value]) => (
     `<div><dt>${term}</dt><dd>${value}</dd></div>`
   )).join("");
-  modalCta.textContent = game.ctaLabel;
+  modalCta.textContent = game.playStoreUrl ? "Main di Web" : game.ctaLabel;
   modalCta.href = game.url;
   modalCta.hidden = !game.url;
+  modalPlayStoreCta.href = game.playStoreUrl || "#";
+  modalPlayStoreCta.setAttribute("aria-label", `Dapatkan ${game.title} di Google Play`);
+  modalPlayStoreCta.hidden = !game.playStoreUrl;
   modalDetails.hidden = false;
   parentGuide.hidden = true;
 
@@ -178,6 +189,7 @@ const openParentGuide = (trigger) => {
   modalSummary.textContent = "ZilTeroka direka sebagai aktiviti pembelajaran tambahan yang boleh dimainkan secara kendiri atau bersama orang dewasa.";
   modalDetails.hidden = true;
   modalCta.hidden = true;
+  modalPlayStoreCta.hidden = true;
   parentGuide.hidden = false;
   parentGuide.querySelectorAll("details").forEach((details, index) => {
     details.open = index === 0;
