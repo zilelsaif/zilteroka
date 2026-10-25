@@ -68,6 +68,34 @@ const games = {
     label: "Dunia misteri",
     symbol: "?",
     note: "Bahasa · Petunjuk · Kes"
+  },
+  mataHelang: {
+    title: "Mata Helang: Cari Kata",
+    description: "Cari perkataan tersembunyi sambil mengasah kosa kata, fokus dan pemerhatian.",
+    summary: "Cari perkataan tersembunyi dalam grid sambil mengasah kosa kata, fokus dan pemerhatian.",
+    details: [
+      ["Fokus", "Kosa Kata & Pemerhatian"],
+      ["Umur", "5–15 tahun"],
+      ["Kategori", "Haiwan, Buah-buahan, Makanan, Sekolah, Kenderaan & Alam"],
+      ["Gaya", "Cari kata interaktif"],
+      ["Peranti", "PC, Tablet & Mobile"],
+      ["Kos", "Percuma"],
+      ["Akaun", "Tidak diperlukan"],
+      ["Status", "Beta — Dalam Pembangunan"]
+    ],
+    developmentNote: "Versi semasa sudah boleh dimainkan, tetapi kandungan, UI dan polish permainan masih dalam pembangunan.",
+    ctaLabel: "Main Mata Helang",
+    url: "https://mata-helang-cari-kata.pages.dev/",
+    artworkUrl: "assets/games/mata-helang-card.webp",
+    logoUrl: "",
+    logoEmbedded: true,
+    artworkAlt: "Mata Helang: Cari Kata — permainan cari kata bersama Raka",
+    className: "mata-helang",
+    label: "Dunia pemerhatian",
+    symbol: "MH",
+    note: "",
+    meta: "Umur 5–15 • PC, Tablet & Mobile",
+    statusBadge: "BETA"
   }
 };
 
@@ -92,17 +120,23 @@ if (gameGrid) {
       : "";
     const webCtaLabel = game.playStoreUrl ? "Main di Web" : "Main Sekarang";
     const actionsClass = game.playStoreUrl ? "game-actions has-play-store" : "game-actions";
+    const statusBadge = game.statusBadge
+      ? `<span class="game-status" title="Versi semasa sudah boleh dimainkan. UI, kandungan dan pengalaman permainan masih akan ditambah baik.">${game.statusBadge}</span>`
+      : "";
+    const visualNote = game.note ? `<small>${game.note}</small>` : "";
+    const gameMeta = game.meta ? `<p class="game-meta">${game.meta}</p>` : "";
 
     return `
       <article class="game-card ${game.className}" id="${id}">
         <div class="game-visual" role="img" aria-label="${game.artworkUrl ? game.artworkAlt : `Placeholder visual rasmi untuk ${game.title}`}">
           ${logoContent}
           ${visualContent}
-          <small>${game.note}</small>
+          ${visualNote}
         </div>
         <div class="game-body">
-          <h3>${game.title}</h3>
+          <div class="game-heading"><h3>${game.title}</h3>${statusBadge}</div>
           <p>${game.description}</p>
+          ${gameMeta}
           <div class="${actionsClass}">
             <a class="button button-game" ${playAttributes}>${webCtaLabel}</a>
             ${playStoreAction}
@@ -133,6 +167,7 @@ const modalEyebrow = gameModal?.querySelector("[data-modal-eyebrow]");
 const modalTitle = gameModal?.querySelector("[data-modal-title]");
 const modalSummary = gameModal?.querySelector("[data-modal-summary]");
 const modalDetails = gameModal?.querySelector("[data-modal-details]");
+const modalNote = gameModal?.querySelector("[data-modal-note]");
 const modalCta = gameModal?.querySelector("[data-modal-cta]");
 const modalPlayStoreCta = gameModal?.querySelector("[data-modal-play-store-cta]");
 const parentGuide = gameModal?.querySelector("[data-parent-guide]");
@@ -163,6 +198,8 @@ const openGameModal = (gameId, trigger) => {
   modalDetails.innerHTML = game.details.map(([term, value]) => (
     `<div><dt>${term}</dt><dd>${value}</dd></div>`
   )).join("");
+  modalNote.textContent = game.developmentNote || "";
+  modalNote.hidden = !game.developmentNote;
   modalCta.textContent = game.playStoreUrl ? "Main di Web" : game.ctaLabel;
   modalCta.href = game.url;
   modalCta.hidden = !game.url;
@@ -188,6 +225,7 @@ const openParentGuide = (trigger) => {
   modalTitle.textContent = "Panduan Ibu Bapa & Guru";
   modalSummary.textContent = "ZilTeroka direka sebagai aktiviti pembelajaran tambahan yang boleh dimainkan secara kendiri atau bersama orang dewasa.";
   modalDetails.hidden = true;
+  modalNote.hidden = true;
   modalCta.hidden = true;
   modalPlayStoreCta.hidden = true;
   parentGuide.hidden = false;

@@ -1,6 +1,6 @@
 # ZilTeroka
 
-**Versi semasa: v0.4.2**
+**Versi semasa: v0.4.3**
 
 Portal rasmi ringan untuk permainan pendidikan ZilTeroka. Projek ini dibina dengan HTML5, CSS3 dan JavaScript vanilla, tanpa framework, tracking, akaun, pangkalan data atau storan pelayar.
 
@@ -42,6 +42,14 @@ Versi semasa menggunakan aset rasmi tempatan untuk Kedai Matematik, Makmal Cilik
 Setiap kad menggunakan satu promotional key art WebP 1600 × 900 dengan logo rasmi sudah digabungkan ke dalam komposisi. `logoEmbedded: true` menghalang layer logo kedua daripada dipaparkan.
 
 ## Changelog
+
+### v0.4.3 — Mata Helang Beta & KubiKata Preview
+
+- Moved Mata Helang: Cari Kata to playable games.
+- Added Beta / In Development status.
+- Added Mata Helang game information and Parent/Teacher guidance.
+- Added KubiKata to upcoming games.
+- Refreshed game catalogue.
 
 ### v0.4.2 — Google Play Availability
 
