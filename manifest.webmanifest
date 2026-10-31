@@ -1,0 +1,41 @@
+{
+  "id": "/",
+  "name": "ZilTeroka — EduGame Percuma MY",
+  "short_name": "ZilTeroka",
+  "description": "Portal permainan pendidikan percuma untuk Matematik, Sains, Bahasa Melayu dan pembelajaran interaktif.",
+  "lang": "ms",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0757d6",
+  "prefer_related_applications": false,
+  "categories": ["education", "games"],
+  "icons": [
+    {
+      "src": "assets/brand/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/brand/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/brand/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/brand/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

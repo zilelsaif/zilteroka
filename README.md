@@ -1,6 +1,6 @@
 # ZilTeroka
 
-**Versi semasa: v0.4.3**
+**Versi semasa: v0.5.0**
 
 Portal rasmi ringan untuk permainan pendidikan ZilTeroka. Projek ini dibina dengan HTML5, CSS3 dan JavaScript vanilla, tanpa framework, tracking, akaun, pangkalan data atau storan pelayar.
 
@@ -42,6 +42,17 @@ Versi semasa menggunakan aset rasmi tempatan untuk Kedai Matematik, Makmal Cilik
 Setiap kad menggunakan satu promotional key art WebP 1600 × 900 dengan logo rasmi sudah digabungkan ke dalam komposisi. `logoEmbedded: true` menghalang layer logo kedua daripada dipaparkan.
 
 ## Changelog
+
+### v0.5.0 — Production & Installability Polish
+
+- Added installable web-app manifest.
+- Integrated ZilTeroka app icons, including dedicated maskable variants.
+- Added social sharing metadata and preview.
+- Added custom Cloudflare Pages 404 experience.
+- Improved production metadata.
+- Added lightweight connectivity handling.
+- Added robots and sitemap support.
+- No offline support is claimed; this release does not add a service worker.
 
 ### v0.4.3 — Mata Helang Beta & KubiKata Preview
 

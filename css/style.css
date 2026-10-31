@@ -180,3 +180,9 @@ body.modal-open{overflow:hidden}
   .game-grid{grid-template-columns:1fr}
   .mata-helang .game-artwork{object-position:center}
 }
+
+/* v0.5.0 lightweight connectivity status. */
+.connection-status{position:fixed;z-index:1100;left:50%;bottom:1.25rem;transform:translateX(-50%);width:min(calc(100% - 2rem),620px);padding:.85rem 1.1rem;border:1px solid rgba(255,255,255,.24);border-radius:14px;background:#071f48;color:#fff;box-shadow:0 14px 40px rgba(3,18,48,.28);font-size:.92rem;font-weight:750;text-align:center}
+.connection-status[data-variant="online"]{background:#087950}
+.connection-status[hidden]{display:none}
+@media(max-width:680px){.connection-status{bottom:.75rem;font-size:.86rem}}

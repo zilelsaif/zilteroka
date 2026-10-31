@@ -315,3 +315,33 @@ document.addEventListener("keydown", (event) => {
 });
 
 document.querySelector("[data-year]").textContent = new Date().getFullYear();
+
+const connectionStatus = document.querySelector("[data-connection-status]");
+let connectionStatusTimer = null;
+
+const showConnectionStatus = (message, variant, dismissAfter = 0) => {
+  if (!connectionStatus) return;
+
+  window.clearTimeout(connectionStatusTimer);
+  connectionStatus.textContent = message;
+  connectionStatus.dataset.variant = variant;
+  connectionStatus.hidden = false;
+
+  if (dismissAfter) {
+    connectionStatusTimer = window.setTimeout(() => {
+      connectionStatus.hidden = true;
+    }, dismissAfter);
+  }
+};
+
+window.addEventListener("offline", () => {
+  showConnectionStatus("Anda sedang offline. Sesetengah game mungkin tidak dapat dibuka.", "offline");
+});
+
+window.addEventListener("online", () => {
+  showConnectionStatus("Sambungan internet kembali tersedia.", "online", 5000);
+});
+
+if (!navigator.onLine) {
+  showConnectionStatus("Anda sedang offline. Sesetengah game mungkin tidak dapat dibuka.", "offline");
+}
